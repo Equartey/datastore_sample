@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3DatastoreExample",
+  "policyUUID": "70051d2b",
+  "bucketName": "datastoreauth7c0f376651d54cf9b2c2cf1062225ba9",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

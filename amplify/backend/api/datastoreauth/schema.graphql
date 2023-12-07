@@ -1,0 +1,17 @@
+type TestTableOne @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  profile_id: ID! @primaryKey
+  count: Int
+}
+
+type TestTableTwo @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  profile_id: ID! @primaryKey
+  count: Int
+}
+
+type TestTableThree @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  profile_id: ID! @primaryKey
+  count: Int
+}
