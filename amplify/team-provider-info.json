@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "datastoreauth76f1bc79": {}
+        "datastoreauth76f1bc79": {},
+        "userPoolGroups": {}
       },
       "storage": {
         "s3DatastoreExample": {}

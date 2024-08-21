@@ -6,7 +6,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_storage_s3/amplify_storage_s3.dart';
+// import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Future _configureAmplify() async {
     await Amplify.addPlugins([
       AmplifyAuthCognito(),
-      AmplifyStorageS3(),
+      // AmplifyStorageS3(),
       AmplifyAPI(modelProvider: ModelProvider.instance),
       AmplifyDataStore(
         modelProvider: ModelProvider.instance,

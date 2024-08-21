@@ -4,19 +4,14 @@ publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ">=3.0.1 <4.0.0"
-  flutter: ">=3.3.0"
+  sdk: ">=3.3.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  amplify_flutter: ^1.4.0
-  amplify_auth_cognito: ^1.4.0
-  amplify_api: ^1.4.0
-  amplify_datastore:
-    path: /Users/quaelija/code/forks/amplify-flutter/packages/amplify_datastore
-  amplify_authenticator: ^1.4.0
-  amplify_storage_s3: ^1.4.0
+  amplify_auth_cognito: ^2.0.0
+  amplify_authenticator: ^2.0.0
+  amplify_api: ^2.0.0
+  amplify_flutter: ^2.0.0
+  amplify_datastore: ^2.0.0
 
 dev_dependencies:
   flutter_test:

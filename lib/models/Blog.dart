@@ -17,18 +17,19 @@
 // Generated files can be excluded from analysis in analysis_options.yaml
 // For more info, see: https://dart.dev/guides/language/analysis-options#excluding-code-from-analysis
 
-// ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
+// ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, override_on_non_overriding_member, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart' as amplify_core;
+import 'package:collection/collection.dart';
 
 
-/** This is an auto generated class representing the TestTableTwo type in your schema. */
-class TestTableTwo extends amplify_core.Model {
-  static const classType = const _TestTableTwoModelType();
+/** This is an auto generated class representing the Blog type in your schema. */
+class Blog extends amplify_core.Model {
+  static const classType = const _BlogModelType();
   final String id;
-  final String? _profile_id;
-  final int? _count;
+  final String? _name;
+  final List<Post>? _posts;
   final amplify_core.TemporalDateTime? _createdAt;
   final amplify_core.TemporalDateTime? _updatedAt;
 
@@ -37,26 +38,17 @@ class TestTableTwo extends amplify_core.Model {
   
   @Deprecated('[getId] is being deprecated in favor of custom primary key feature. Use getter [modelIdentifier] to get model identifier.')
   @override
-  String getId() => modelIdentifier.serializeAsString();
+  String getId() => id;
   
-  TestTableTwoModelIdentifier get modelIdentifier {
-    try {
-      return TestTableTwoModelIdentifier(
-        profile_id: _profile_id!
+  BlogModelIdentifier get modelIdentifier {
+      return BlogModelIdentifier(
+        id: id
       );
-    } catch(e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
   }
   
-  String get profile_id {
+  String get name {
     try {
-      return _profile_id!;
+      return _name!;
     } catch(e) {
       throw amplify_core.AmplifyCodeGenModelException(
           amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
@@ -67,8 +59,8 @@ class TestTableTwo extends amplify_core.Model {
     }
   }
   
-  int? get count {
-    return _count;
+  List<Post>? get posts {
+    return _posts;
   }
   
   amplify_core.TemporalDateTime? get createdAt {
@@ -79,13 +71,13 @@ class TestTableTwo extends amplify_core.Model {
     return _updatedAt;
   }
   
-  const TestTableTwo._internal({required this.id, required profile_id, count, createdAt, updatedAt}): _profile_id = profile_id, _count = count, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Blog._internal({required this.id, required name, posts, createdAt, updatedAt}): _name = name, _posts = posts, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory TestTableTwo({String? id, required String profile_id, int? count}) {
-    return TestTableTwo._internal(
+  factory Blog({String? id, required String name, List<Post>? posts}) {
+    return Blog._internal(
       id: id == null ? amplify_core.UUID.getUUID() : id,
-      profile_id: profile_id,
-      count: count);
+      name: name,
+      posts: posts != null ? List<Post>.unmodifiable(posts) : posts);
   }
   
   bool equals(Object other) {
@@ -95,10 +87,10 @@ class TestTableTwo extends amplify_core.Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is TestTableTwo &&
+    return other is Blog &&
       id == other.id &&
-      _profile_id == other._profile_id &&
-      _count == other._count;
+      _name == other._name &&
+      DeepCollectionEquality().equals(_posts, other._posts);
   }
   
   @override
@@ -108,10 +100,9 @@ class TestTableTwo extends amplify_core.Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("TestTableTwo {");
+    buffer.write("Blog {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("profile_id=" + "$_profile_id" + ", ");
-    buffer.write("count=" + (_count != null ? _count!.toString() : "null") + ", ");
+    buffer.write("name=" + "$_name" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -119,54 +110,69 @@ class TestTableTwo extends amplify_core.Model {
     return buffer.toString();
   }
   
-  TestTableTwo copyWith({String? id, int? count}) {
-    return TestTableTwo._internal(
-      id: id ?? this.id,
-      profile_id: profile_id,
-      count: count ?? this.count);
+  Blog copyWith({String? name, List<Post>? posts}) {
+    return Blog._internal(
+      id: id,
+      name: name ?? this.name,
+      posts: posts ?? this.posts);
   }
   
-  TestTableTwo copyWithModelFieldValues({
-    ModelFieldValue<String>? id,
-    ModelFieldValue<int?>? count
+  Blog copyWithModelFieldValues({
+    ModelFieldValue<String>? name,
+    ModelFieldValue<List<Post>?>? posts
   }) {
-    return TestTableTwo._internal(
-      id: id == null ? this.id : id.value,
-      profile_id: profile_id,
-      count: count == null ? this.count : count.value
+    return Blog._internal(
+      id: id,
+      name: name == null ? this.name : name.value,
+      posts: posts == null ? this.posts : posts.value
     );
   }
   
-  TestTableTwo.fromJson(Map<String, dynamic> json)  
+  Blog.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _profile_id = json['profile_id'],
-      _count = (json['count'] as num?)?.toInt(),
+      _name = json['name'],
+      _posts = json['posts']  is Map
+        ? (json['posts']['items'] is List
+          ? (json['posts']['items'] as List)
+              .where((e) => e != null)
+              .map((e) => Post.fromJson(new Map<String, dynamic>.from(e)))
+              .toList()
+          : null)
+        : (json['posts'] is List
+          ? (json['posts'] as List)
+              .where((e) => e?['serializedData'] != null)
+              .map((e) => Post.fromJson(new Map<String, dynamic>.from(e?['serializedData'])))
+              .toList()
+          : null),
       _createdAt = json['createdAt'] != null ? amplify_core.TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? amplify_core.TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'profile_id': _profile_id, 'count': _count, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'name': _name, 'posts': _posts?.map((Post? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
     'id': id,
-    'profile_id': _profile_id,
-    'count': _count,
+    'name': _name,
+    'posts': _posts,
     'createdAt': _createdAt,
     'updatedAt': _updatedAt
   };
 
-  static final amplify_core.QueryModelIdentifier<TestTableTwoModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<TestTableTwoModelIdentifier>();
+  static final amplify_core.QueryModelIdentifier<BlogModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<BlogModelIdentifier>();
   static final ID = amplify_core.QueryField(fieldName: "id");
-  static final PROFILE_ID = amplify_core.QueryField(fieldName: "profile_id");
-  static final COUNT = amplify_core.QueryField(fieldName: "count");
+  static final NAME = amplify_core.QueryField(fieldName: "name");
+  static final POSTS = amplify_core.QueryField(
+    fieldName: "posts",
+    fieldType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.model, ofModelName: 'Post'));
   static var schema = amplify_core.Model.defineSchema(define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "TestTableTwo";
-    modelSchemaDefinition.pluralName = "TestTableTwos";
+    modelSchemaDefinition.name = "Blog";
+    modelSchemaDefinition.pluralName = "Blogs";
     
     modelSchemaDefinition.authRules = [
       amplify_core.AuthRule(
         authStrategy: amplify_core.AuthStrategy.PUBLIC,
+        provider: amplify_core.AuthRuleProvider.APIKEY,
         operations: const [
           amplify_core.ModelOperation.CREATE,
           amplify_core.ModelOperation.UPDATE,
@@ -175,22 +181,19 @@ class TestTableTwo extends amplify_core.Model {
         ])
     ];
     
-    modelSchemaDefinition.indexes = [
-      amplify_core.ModelIndex(fields: const ["profile_id"], name: null)
-    ];
-    
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: TestTableTwo.PROFILE_ID,
+      key: Blog.NAME,
       isRequired: true,
       ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: TestTableTwo.COUNT,
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.hasMany(
+      key: Blog.POSTS,
       isRequired: false,
-      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)
+      ofModelName: 'Post',
+      associatedKey: Post.BLOG
     ));
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
@@ -209,34 +212,34 @@ class TestTableTwo extends amplify_core.Model {
   });
 }
 
-class _TestTableTwoModelType extends amplify_core.ModelType<TestTableTwo> {
-  const _TestTableTwoModelType();
+class _BlogModelType extends amplify_core.ModelType<Blog> {
+  const _BlogModelType();
   
   @override
-  TestTableTwo fromJson(Map<String, dynamic> jsonData) {
-    return TestTableTwo.fromJson(jsonData);
+  Blog fromJson(Map<String, dynamic> jsonData) {
+    return Blog.fromJson(jsonData);
   }
   
   @override
   String modelName() {
-    return 'TestTableTwo';
+    return 'Blog';
   }
 }
 
 /**
  * This is an auto generated class representing the model identifier
- * of [TestTableTwo] in your schema.
+ * of [Blog] in your schema.
  */
-class TestTableTwoModelIdentifier implements amplify_core.ModelIdentifier<TestTableTwo> {
-  final String profile_id;
+class BlogModelIdentifier implements amplify_core.ModelIdentifier<Blog> {
+  final String id;
 
-  /** Create an instance of TestTableTwoModelIdentifier using [profile_id] the primary key. */
-  const TestTableTwoModelIdentifier({
-    required this.profile_id});
+  /** Create an instance of BlogModelIdentifier using [id] the primary key. */
+  const BlogModelIdentifier({
+    required this.id});
   
   @override
   Map<String, dynamic> serializeAsMap() => (<String, dynamic>{
-    'profile_id': profile_id
+    'id': id
   });
   
   @override
@@ -249,7 +252,7 @@ class TestTableTwoModelIdentifier implements amplify_core.ModelIdentifier<TestTa
   String serializeAsString() => serializeAsMap().values.join('#');
   
   @override
-  String toString() => 'TestTableTwoModelIdentifier(profile_id: $profile_id)';
+  String toString() => 'BlogModelIdentifier(id: $id)';
   
   @override
   bool operator ==(Object other) {
@@ -257,11 +260,11 @@ class TestTableTwoModelIdentifier implements amplify_core.ModelIdentifier<TestTa
       return true;
     }
     
-    return other is TestTableTwoModelIdentifier &&
-      profile_id == other.profile_id;
+    return other is BlogModelIdentifier &&
+      id == other.id;
   }
   
   @override
   int get hashCode =>
-    profile_id.hashCode;
+    id.hashCode;
 }

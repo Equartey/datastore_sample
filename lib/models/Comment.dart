@@ -17,18 +17,18 @@
 // Generated files can be excluded from analysis in analysis_options.yaml
 // For more info, see: https://dart.dev/guides/language/analysis-options#excluding-code-from-analysis
 
-// ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
+// ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, override_on_non_overriding_member, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart' as amplify_core;
 
 
-/** This is an auto generated class representing the TestTableThree type in your schema. */
-class TestTableThree extends amplify_core.Model {
-  static const classType = const _TestTableThreeModelType();
+/** This is an auto generated class representing the Comment type in your schema. */
+class Comment extends amplify_core.Model {
+  static const classType = const _CommentModelType();
   final String id;
-  final String? _profile_id;
-  final int? _count;
+  final Post? _post;
+  final String? _content;
   final amplify_core.TemporalDateTime? _createdAt;
   final amplify_core.TemporalDateTime? _updatedAt;
 
@@ -37,26 +37,21 @@ class TestTableThree extends amplify_core.Model {
   
   @Deprecated('[getId] is being deprecated in favor of custom primary key feature. Use getter [modelIdentifier] to get model identifier.')
   @override
-  String getId() => modelIdentifier.serializeAsString();
+  String getId() => id;
   
-  TestTableThreeModelIdentifier get modelIdentifier {
-    try {
-      return TestTableThreeModelIdentifier(
-        profile_id: _profile_id!
+  CommentModelIdentifier get modelIdentifier {
+      return CommentModelIdentifier(
+        id: id
       );
-    } catch(e) {
-      throw amplify_core.AmplifyCodeGenModelException(
-          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
   }
   
-  String get profile_id {
+  Post? get post {
+    return _post;
+  }
+  
+  String get content {
     try {
-      return _profile_id!;
+      return _content!;
     } catch(e) {
       throw amplify_core.AmplifyCodeGenModelException(
           amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
@@ -65,10 +60,6 @@ class TestTableThree extends amplify_core.Model {
           underlyingException: e.toString()
           );
     }
-  }
-  
-  int? get count {
-    return _count;
   }
   
   amplify_core.TemporalDateTime? get createdAt {
@@ -79,13 +70,13 @@ class TestTableThree extends amplify_core.Model {
     return _updatedAt;
   }
   
-  const TestTableThree._internal({required this.id, required profile_id, count, createdAt, updatedAt}): _profile_id = profile_id, _count = count, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Comment._internal({required this.id, post, required content, createdAt, updatedAt}): _post = post, _content = content, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory TestTableThree({String? id, required String profile_id, int? count}) {
-    return TestTableThree._internal(
+  factory Comment({String? id, Post? post, required String content}) {
+    return Comment._internal(
       id: id == null ? amplify_core.UUID.getUUID() : id,
-      profile_id: profile_id,
-      count: count);
+      post: post,
+      content: content);
   }
   
   bool equals(Object other) {
@@ -95,10 +86,10 @@ class TestTableThree extends amplify_core.Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is TestTableThree &&
+    return other is Comment &&
       id == other.id &&
-      _profile_id == other._profile_id &&
-      _count == other._count;
+      _post == other._post &&
+      _content == other._content;
   }
   
   @override
@@ -108,10 +99,10 @@ class TestTableThree extends amplify_core.Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("TestTableThree {");
+    buffer.write("Comment {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("profile_id=" + "$_profile_id" + ", ");
-    buffer.write("count=" + (_count != null ? _count!.toString() : "null") + ", ");
+    buffer.write("post=" + (_post != null ? _post!.toString() : "null") + ", ");
+    buffer.write("content=" + "$_content" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -119,54 +110,61 @@ class TestTableThree extends amplify_core.Model {
     return buffer.toString();
   }
   
-  TestTableThree copyWith({String? id, int? count}) {
-    return TestTableThree._internal(
-      id: id ?? this.id,
-      profile_id: profile_id,
-      count: count ?? this.count);
+  Comment copyWith({Post? post, String? content}) {
+    return Comment._internal(
+      id: id,
+      post: post ?? this.post,
+      content: content ?? this.content);
   }
   
-  TestTableThree copyWithModelFieldValues({
-    ModelFieldValue<String>? id,
-    ModelFieldValue<int?>? count
+  Comment copyWithModelFieldValues({
+    ModelFieldValue<Post?>? post,
+    ModelFieldValue<String>? content
   }) {
-    return TestTableThree._internal(
-      id: id == null ? this.id : id.value,
-      profile_id: profile_id,
-      count: count == null ? this.count : count.value
+    return Comment._internal(
+      id: id,
+      post: post == null ? this.post : post.value,
+      content: content == null ? this.content : content.value
     );
   }
   
-  TestTableThree.fromJson(Map<String, dynamic> json)  
+  Comment.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _profile_id = json['profile_id'],
-      _count = (json['count'] as num?)?.toInt(),
+      _post = json['post'] != null
+        ? json['post']['serializedData'] != null
+          ? Post.fromJson(new Map<String, dynamic>.from(json['post']['serializedData']))
+          : Post.fromJson(new Map<String, dynamic>.from(json['post']))
+        : null,
+      _content = json['content'],
       _createdAt = json['createdAt'] != null ? amplify_core.TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? amplify_core.TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'profile_id': _profile_id, 'count': _count, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'post': _post?.toJson(), 'content': _content, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
     'id': id,
-    'profile_id': _profile_id,
-    'count': _count,
+    'post': _post,
+    'content': _content,
     'createdAt': _createdAt,
     'updatedAt': _updatedAt
   };
 
-  static final amplify_core.QueryModelIdentifier<TestTableThreeModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<TestTableThreeModelIdentifier>();
+  static final amplify_core.QueryModelIdentifier<CommentModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<CommentModelIdentifier>();
   static final ID = amplify_core.QueryField(fieldName: "id");
-  static final PROFILE_ID = amplify_core.QueryField(fieldName: "profile_id");
-  static final COUNT = amplify_core.QueryField(fieldName: "count");
+  static final POST = amplify_core.QueryField(
+    fieldName: "post",
+    fieldType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.model, ofModelName: 'Post'));
+  static final CONTENT = amplify_core.QueryField(fieldName: "content");
   static var schema = amplify_core.Model.defineSchema(define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "TestTableThree";
-    modelSchemaDefinition.pluralName = "TestTableThrees";
+    modelSchemaDefinition.name = "Comment";
+    modelSchemaDefinition.pluralName = "Comments";
     
     modelSchemaDefinition.authRules = [
       amplify_core.AuthRule(
         authStrategy: amplify_core.AuthStrategy.PUBLIC,
+        provider: amplify_core.AuthRuleProvider.APIKEY,
         operations: const [
           amplify_core.ModelOperation.CREATE,
           amplify_core.ModelOperation.UPDATE,
@@ -176,21 +174,22 @@ class TestTableThree extends amplify_core.Model {
     ];
     
     modelSchemaDefinition.indexes = [
-      amplify_core.ModelIndex(fields: const ["profile_id"], name: null)
+      amplify_core.ModelIndex(fields: const ["postID", "content"], name: "byPost")
     ];
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
     
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: TestTableThree.PROFILE_ID,
-      isRequired: true,
-      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.belongsTo(
+      key: Comment.POST,
+      isRequired: false,
+      targetNames: ['postID'],
+      ofModelName: 'Post'
     ));
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: TestTableThree.COUNT,
-      isRequired: false,
-      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)
+      key: Comment.CONTENT,
+      isRequired: true,
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
@@ -209,34 +208,34 @@ class TestTableThree extends amplify_core.Model {
   });
 }
 
-class _TestTableThreeModelType extends amplify_core.ModelType<TestTableThree> {
-  const _TestTableThreeModelType();
+class _CommentModelType extends amplify_core.ModelType<Comment> {
+  const _CommentModelType();
   
   @override
-  TestTableThree fromJson(Map<String, dynamic> jsonData) {
-    return TestTableThree.fromJson(jsonData);
+  Comment fromJson(Map<String, dynamic> jsonData) {
+    return Comment.fromJson(jsonData);
   }
   
   @override
   String modelName() {
-    return 'TestTableThree';
+    return 'Comment';
   }
 }
 
 /**
  * This is an auto generated class representing the model identifier
- * of [TestTableThree] in your schema.
+ * of [Comment] in your schema.
  */
-class TestTableThreeModelIdentifier implements amplify_core.ModelIdentifier<TestTableThree> {
-  final String profile_id;
+class CommentModelIdentifier implements amplify_core.ModelIdentifier<Comment> {
+  final String id;
 
-  /** Create an instance of TestTableThreeModelIdentifier using [profile_id] the primary key. */
-  const TestTableThreeModelIdentifier({
-    required this.profile_id});
+  /** Create an instance of CommentModelIdentifier using [id] the primary key. */
+  const CommentModelIdentifier({
+    required this.id});
   
   @override
   Map<String, dynamic> serializeAsMap() => (<String, dynamic>{
-    'profile_id': profile_id
+    'id': id
   });
   
   @override
@@ -249,7 +248,7 @@ class TestTableThreeModelIdentifier implements amplify_core.ModelIdentifier<Test
   String serializeAsString() => serializeAsMap().values.join('#');
   
   @override
-  String toString() => 'TestTableThreeModelIdentifier(profile_id: $profile_id)';
+  String toString() => 'CommentModelIdentifier(id: $id)';
   
   @override
   bool operator ==(Object other) {
@@ -257,11 +256,11 @@ class TestTableThreeModelIdentifier implements amplify_core.ModelIdentifier<Test
       return true;
     }
     
-    return other is TestTableThreeModelIdentifier &&
-      profile_id == other.profile_id;
+    return other is CommentModelIdentifier &&
+      id == other.id;
   }
   
   @override
   int get hashCode =>
-    profile_id.hashCode;
+    id.hashCode;
 }

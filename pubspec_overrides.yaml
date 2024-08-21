@@ -1,0 +1,31 @@
+# dependency_overrides:
+#   amplify_analytics_pinpoint:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/analytics/amplify_analytics_pinpoint
+#   amplify_analytics_pinpoint_dart:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/analytics/amplify_analytics_pinpoint_dart
+#   amplify_api_dart:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/api/amplify_api_dart
+#   amplify_api:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/api/amplify_api
+#   amplify_authenticator:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/authenticator/amplify_authenticator
+#   amplify_auth_cognito:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/auth/amplify_auth_cognito
+#   amplify_flutter:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/amplify/amplify_flutter
+#   amplify_datastore:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/amplify_datastore
+#   amplify_datastore_plugin_interface:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/amplify_datastore_plugin_interface
+#   amplify_db_common:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/common/amplify_db_common
+#   amplify_db_common_dart:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/common/amplify_db_common_dart
+#   amplify_secure_storage:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/secure_storage/amplify_secure_storage
+#   amplify_secure_storage_dart:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/secure_storage/amplify_secure_storage_dart
+#   aws_common:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/aws_common
+#   aws_signature_v4:
+#     path: /Users/quaelija/code/forks/af/feat/datastore-spm-migration/packages/aws_signature_v4

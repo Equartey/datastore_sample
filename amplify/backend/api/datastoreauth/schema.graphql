@@ -1,17 +1,116 @@
-type TestTableOne @model @auth(rules: [{ allow: public }]) {
+type Blog @model @auth(rules: [{ allow: public, provider: apiKey }]) {
   id: ID!
-  profile_id: ID! @primaryKey
-  count: Int
+  name: String!
+  posts: [Post] @hasMany(indexName: "byBlog", fields: ["id"])
 }
 
-type TestTableTwo @model @auth(rules: [{ allow: public }]) {
+type Post @model @auth(rules: [{ allow: public, provider: apiKey }]) {
   id: ID!
-  profile_id: ID! @primaryKey
-  count: Int
+  title: String!
+  rating: Int!
+  created: AWSDateTime
+  blogID: ID @index(name: "byBlog")
+  blog: Blog @belongsTo(fields: ["blogID"])
+  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
 }
 
-type TestTableThree @model @auth(rules: [{ allow: public }]) {
+type Comment @model @auth(rules: [{ allow: public, provider: apiKey }]) {
   id: ID!
-  profile_id: ID! @primaryKey
-  count: Int
+  postID: ID! @index(name: "byPost", sortKeyFields: ["content"])
+  post: Post @belongsTo(fields: ["postID"])
+  content: String!
+}
+
+type Todo @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  name: String
+}
+
+type Restricted
+  @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["restricted"]
+        operations: [create, read, update]
+      }
+    ]
+  ) {
+  id: ID!
+  name: String
+}
+
+type Item
+  @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, read, delete]
+      }
+      {
+        allow: groups
+        groups: ["Api", "Operative"]
+        operations: [create, update, read]
+      }
+      { allow: groups, groups: ["Guest"], operations: [read] }
+    ]
+  ) {
+  tenantId: ID! @primaryKey(sortKeyFields: ["id"]) # customized foreign key for parent primary key
+  #tenantId: ID! @primaryKey(sortKeyFields: ["id"])
+
+  locationId: ID! @index(sortKeyFields: ["ck"])
+  location: String!
+  #location: String! @index(sortKeyFields: ["ck"])
+
+  id: ID!
+  group: String
+  groupId: String
+  parcel: String
+  parcelId: String
+  cattleLot: String
+  ck: String!
+  ckt: String
+
+  aid: String
+  altaid: String
+  alias: String
+  name: String
+  description: String
+
+  admissionDate: AWSDate
+
+  lastOwner: String
+  cost: Float
+
+  market: AWSDate
+  purchase: Float
+  retag: String
+  letag: String
+  eid: String
+  # events: [Event]
+  # production: [Production]
+  # weights: [Weight]
+  images: [S3Object]
+  documents: [S3Object]
+
+  # type: AnimalType!
+  # gender: Gender!
+  breed: String
+  color: String
+  # status: ItemStatus!
+  sale: Float
+}
+
+type S3Object {
+  name: String
+  date: AWSDateTime!
+  bucket: String!
+  region: String!
+  key: String
+  localPath: String
+  ownerId: String
+  ownerName: String
 }
